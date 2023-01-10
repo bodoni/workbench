@@ -11,8 +11,8 @@ assets/svg/.done:
 	mkdir -p assets/svg
 	cargo run --bin founder-sign -- \
 		--path ../founder/tests/fixtures/google-fonts \
-		--output assets/svg \
 		--characters anop \
+		--output assets/svg \
 		--ignore google-fonts/ofl/bungeecolor \
 		--ignore google-fonts/ofl/bungeespice \
 		--ignore google-fonts/ofl/gruppo \
