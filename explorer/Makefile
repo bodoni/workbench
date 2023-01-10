@@ -10,7 +10,7 @@ assets/png/.done: assets/svg/.done
 assets/svg/.done:
 	mkdir -p assets/svg
 	cargo run --bin founder-sign -- \
-		--path ../founder/tests/fixtures/google-fonts \
+		--path ../tests/fixtures/google-fonts \
 		--characters anop \
 		--output assets/svg \
 		--ignore google-fonts/ofl/bungeecolor \
