@@ -1,0 +1,9 @@
+{
+  "data": {
+    "path": "assets/png",
+    "image_size": [256, 256]
+  },
+  "model": {
+    "image_size": [256, 256, 1]
+  }
+}
