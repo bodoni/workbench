@@ -1,4 +1,7 @@
-all: data
+all: check
+
+check:
+	pre-commit
 
 data: assets/png/.done
 
@@ -28,4 +31,4 @@ assets/svg/.done:
 		--workers 4
 	touch $@
 
-.PHONY: all data
+.PHONY: all check data
