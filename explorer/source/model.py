@@ -36,13 +36,14 @@ def train(
     data_training: tf.data.Dataset,
     data_validation: tf.data.Dataset,
     experiment: aim.Run,
+    learning_rate: float = 0.001,
     epochs: int = 100,
     patience: int = 10,
     **options,
 ) -> tf.keras.Model:
     model = Model(**options)
     model.compile(
-        optimizer="adam",
+        optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
         loss=tf.keras.losses.MeanSquaredError(),
     )
     aim_callback = AimCallback(experiment)
