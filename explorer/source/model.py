@@ -32,6 +32,7 @@ class AimCallback(
         self._run = run
 
 
+# pylint: disable=too-many-arguments
 def train(
     data_training: tf.data.Dataset,
     data_validation: tf.data.Dataset,

@@ -4,7 +4,7 @@ aim:
 	aim up --port 6006
 
 check:
-	pre-commit
+	git ls-files -- . | xargs pre-commit run --files
 
 data: assets/png/.done
 
