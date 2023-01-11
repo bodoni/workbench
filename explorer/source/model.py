@@ -3,6 +3,7 @@ from typing import List
 
 import aim
 import aim.sdk.adapters.keras_mixins
+import numpy as np
 import tensorflow as tf
 
 # pylint: disable=too-few-public-methods
@@ -73,6 +74,6 @@ def train(
 def predict(
     model: tf.keras.Model,
     data: tf.data.Dataset,
-) -> None:
+) -> np.ndarray:
     predictions = model.predict(data)
     return data.image_scale * predictions
