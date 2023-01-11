@@ -48,9 +48,9 @@ def train(
     )
     aim_callback = AimCallback(experiment)
     earlystopping_callback = tf.keras.callbacks.EarlyStopping(
-        restore_best_weights=True,
         monitor="val_loss",
         patience=patience,
+        restore_best_weights=True,
     )
     tensorboard_callback = tf.keras.callbacks.TensorBoard(
         log_dir=os.path.join(".tensorboard", experiment.hash),
