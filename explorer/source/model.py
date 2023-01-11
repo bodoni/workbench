@@ -31,14 +31,6 @@ class AimCallback(
         super(tf.keras.callbacks.Callback, self).__init__()
         self._run = run
 
-    def close(self) -> None:
-        if self._run:
-            self._run.close()
-            del self._run
-
-    def __del__(self) -> None:
-        self.close()
-
 
 def train(
     data_training: tf.data.Dataset,

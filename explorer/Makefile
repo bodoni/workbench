@@ -1,5 +1,8 @@
 all: check
 
+aim:
+	aim up --port 6006
+
 check:
 	pre-commit
 
@@ -31,4 +34,4 @@ assets/svg/.done:
 		--workers 4
 	touch $@
 
-.PHONY: all check data
+.PHONY: all aim check data
