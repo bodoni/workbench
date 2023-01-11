@@ -1,7 +1,7 @@
 {
   "data": {
     "path": "assets/png",
-    "image_size": [256, 256]
+    "image_shape": [256, 256, 1]
   },
   "model": {
     "encoder": [
