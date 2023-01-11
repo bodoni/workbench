@@ -4,6 +4,52 @@
     "image_size": [256, 256]
   },
   "model": {
-    "image_size": [256, 256, 1]
+    "encoder": [
+      {
+        "filters": 16,
+        "kernel_size": 3,
+        "strides": 2,
+        "activation": "relu",
+        "padding": "same",
+        "input_shape": [256, 256, 1]
+      },
+      {
+        "filters": 8,
+        "kernel_size": 3,
+        "strides": 2,
+        "activation": "relu",
+        "padding": "same"
+      },
+      {
+        "filters": 4,
+        "kernel_size": 3,
+        "strides": 2,
+        "activation": "relu",
+        "padding": "same"
+      }
+    ],
+    "decoder": [
+      {
+        "filters": 8,
+        "kernel_size": 3,
+        "strides": 2,
+        "activation": "relu",
+        "padding": "same"
+      },
+      {
+        "filters": 16,
+        "kernel_size": 3,
+        "strides": 2,
+        "activation": "relu",
+        "padding": "same"
+      },
+      {
+        "filters": 1,
+        "kernel_size": 3,
+        "strides": 2,
+        "activation": "sigmoid",
+        "padding": "same"
+      }
+    ]
   }
 }
