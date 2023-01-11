@@ -51,6 +51,7 @@
         "activation": "sigmoid",
         "padding": "same"
       }
-    ]
+    ],
+    "epochs": 100
   }
 }

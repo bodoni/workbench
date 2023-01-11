@@ -31,13 +31,15 @@ def read(
         dataset = dataset.shuffle(buffer_size=buffer_size, seed=random_state)
     dataset = dataset.map(functools.partial(_decode, **options))
     dataset = dataset.batch(batch_size)
+    for name, value in options.items():
+        setattr(dataset, name, value)
     return dataset
 
 
 def _decode(
     path: tf.Tensor,
     image_shape: Tuple[int, int, int],
-    image_scale: int = 225,
+    image_scale: int,
 ) -> Tuple[tf.Tensor, tf.Tensor]:
     image = tf.io.read_file(path)
     image = tf.image.decode_png(image, channels=1)

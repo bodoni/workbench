@@ -68,3 +68,11 @@ def train(
         ],
     )
     return model
+
+
+def predict(
+    model: tf.keras.Model,
+    data: tf.data.Dataset,
+) -> None:
+    predictions = model.predict(data)
+    return data.image_scale * predictions
