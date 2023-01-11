@@ -37,6 +37,7 @@ def train(
     data_validation: tf.data.Dataset,
     experiment: aim.Run,
     epochs: int = 100,
+    patience: int = 10,
     **options,
 ) -> tf.keras.Model:
     model = Model(**options)
@@ -48,7 +49,7 @@ def train(
     earlystopping_callback = tf.keras.callbacks.EarlyStopping(
         restore_best_weights=True,
         monitor="val_loss",
-        patience=10,
+        patience=patience,
     )
     tensorboard_callback = tf.keras.callbacks.TensorBoard(
         log_dir=os.path.join(".tensorboard", experiment.hash),
