@@ -14,8 +14,7 @@ logger = logging.getLogger(__name__)
 def read(
     path: str,
     mode: str,
-    split: float = 0.8,
-    batch_size: int = 32,
+    split: float,
     buffer_size: int = 256,
     random_state: int = 42,
     **options,
@@ -30,7 +29,6 @@ def read(
     if mode == "training":
         dataset = dataset.shuffle(buffer_size=buffer_size, seed=random_state)
     dataset = dataset.map(functools.partial(_decode, **options))
-    dataset = dataset.batch(batch_size)
     for name, value in options.items():
         setattr(dataset, name, value)
     return dataset
@@ -40,13 +38,12 @@ def _decode(
     path: tf.Tensor,
     image_shape: Tuple[int, int, int],
     image_scale: int,
-) -> Tuple[tf.Tensor, tf.Tensor]:
+) -> tf.Tensor:
     image = tf.io.read_file(path)
-    image = tf.image.decode_png(image, channels=1)
-    image.set_shape(image_shape)
+    image = tf.image.decode_image(image, channels=image_shape[-1])
     image = tf.cast(image, tf.float32)
     image = image / image_scale
-    return image, image
+    return image
 
 
 def _list(path: str) -> List[str]:

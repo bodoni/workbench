@@ -2,7 +2,8 @@
   "data": {
     "path": "assets/png",
     "image_shape": [256, 256, 1],
-    "image_scale": 255
+    "image_scale": 255,
+    "split": 0.8
   },
   "model": {
     "encoder": [
@@ -51,7 +52,12 @@
         "activation": "sigmoid",
         "padding": "same"
       }
-    ],
-    "epochs": 100
+    ]
+  },
+  "training": {
+    "learning_rate": 0.001,
+    "batch_size": 32,
+    "epochs": 10,
+    "patience": 10
   }
 }

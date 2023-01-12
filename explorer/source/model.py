@@ -3,7 +3,6 @@ from typing import List
 
 import aim
 import aim.sdk.adapters.keras_mixins
-import numpy as np
 import tensorflow as tf
 
 # pylint: disable=too-few-public-methods
@@ -38,9 +37,10 @@ def train(
     data_training: tf.data.Dataset,
     data_validation: tf.data.Dataset,
     experiment: aim.Run,
-    learning_rate: float = 0.001,
-    epochs: int = 100,
-    patience: int = 10,
+    learning_rate: float,
+    batch_size: int,
+    epochs: int,
+    patience: int,
     **options,
 ) -> tf.keras.Model:
     model = Model(**options)
@@ -58,6 +58,10 @@ def train(
         log_dir=os.path.join(".tensorboard", experiment.hash),
         histogram_freq=1,
     )
+    data_training = data_training.batch(batch_size).map(lambda image: (image, image))
+    data_validation = data_validation.batch(batch_size).map(
+        lambda image: (image, image)
+    )
     model.fit(
         data_training,
         validation_data=data_validation,
@@ -69,11 +73,3 @@ def train(
         ],
     )
     return model
-
-
-def predict(
-    model: tf.keras.Model,
-    data: tf.data.Dataset,
-) -> np.ndarray:
-    predictions = model.predict(data)
-    return data.image_scale * predictions

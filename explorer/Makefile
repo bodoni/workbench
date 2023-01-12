@@ -14,7 +14,7 @@ assets/png/.done: assets/svg/.done
 		qlmanage -t -s 256 -o assets/png assets/svg/*; \
 	else \
 		for file in assets/svg/*; do \
-			dbus-run-session inkscape -z -w 256 -h 256 $${file} -e $$(echo $${file} | sed -r "s#/svg#/png#g").png; \
+			dbus-run-session inkscape -z -b ffffff -w 256 -h 256 $${file} -e $$(echo $${file} | sed -r "s#/svg#/png#g").png; \
 		done \
 	fi
 	touch $@
