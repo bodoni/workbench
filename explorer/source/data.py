@@ -42,7 +42,7 @@ def _decode(
     image = tf.io.read_file(path)
     image = tf.image.decode_image(image, channels=image_shape[-1])
     image = tf.cast(image, tf.float32)
-    image = image / image_scale
+    image = 1 - image / image_scale
     return image
 
 
